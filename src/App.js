@@ -8,23 +8,24 @@ export default class App extends Component {
       {
         id: 1,
         title: "Array",
-        status: "Private",
+        status: "PRIVATE",
         language: "HTML"
       },
       {
         id: 2,
         title: "Object",
-        status: "Public",
+        status: "PUBLIC",
         language: "JavaScript"
       }
     ]
   };
   render() {
+    const {repos}=this.state;
     return (
       <div style={{ border: "black 1px solid" }}>
         <h3 style={{ textAlign: "center", color: "red" }}>GitHub Repo</h3>
         <Add />
-        <Table />
+        <Table repo={repos}  />
       </div>
     );
   }

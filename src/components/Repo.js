@@ -1,11 +1,21 @@
 import React, { Component } from 'react';
-
 export default class Repo extends Component {
   render() {
     return (
-      <div style={{ border: '3px red solid' }}>
-        <h6>Repo</h6>
-      </div>
+      <tr style={{ border: '3px  solid' }}>
+          
+        
+            
+              <td>{this.props.id}</td>
+              <td>{this.props.title}</td>
+              <td>{this.props.status}</td>
+              <td>{this.props.key}</td>
+              <td>{this.props.key}</td>
+              <td>{this.props.lang}</td>
+              <td>{this.props.title}</td>
+            
+            
+      </tr>
     );
   }
 }
