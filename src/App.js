@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Repo from './components/Repo';
 
 export default class App extends Component {
   state = {
@@ -18,9 +19,10 @@ export default class App extends Component {
     ]
   };
   render() {
+    console.log(this.state.repos);
     return (
       <div style={{ border: 'black 1px solid' }}>
-        <h6>App</h6>
+        <Repo repos={this.state.repos}/>
       </div>
     );
   }
