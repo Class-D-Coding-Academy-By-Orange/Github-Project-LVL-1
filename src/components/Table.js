@@ -3,7 +3,7 @@ import Repo from './Repo';
 
 export default class Table extends Component {
   render() {
-    let repos = this.props.repos.map(repo => <Repo key={repo.id} repo={repo} toggleStatus={this.props.toggleStatus} remove={this.props.remove}/>)
+    let repos = this.props.repos.map((repo, index) => <Repo key={repo.id} repo={repo} id={index+1} toggleStatus={this.props.toggleStatus} remove={this.props.remove}/>)
     return (
       <div>
         <table className="table table-hover mt-5">

@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import Add from './components/Add';
 import Table from './components/Table';
+import uuid from 'uuid';
 
 export default class App extends Component {
 
   state = {
     repos: [
       {
-        id: 1,
+        id: uuid.v4(),
         title: 'Array',
         status: 'Private',
         language: 'HTML'
       },
       {
-        id: 2,
+        id: uuid.v4(),
         title: 'Object',
         status: 'Public',
         language: 'JavaScript'
@@ -48,7 +49,7 @@ export default class App extends Component {
 
     if (!(title === '' || language === '' || status === 'Repo Status (Private/Public)')) {
       let repos = this.state.repos
-      let repo = {id: this.state.repos.length + 1, title, status, language}
+      let repo = {id: uuid.v4(), title, status, language}
       this.setState({ repos: repos.concat(repo) })
     }
   }
@@ -61,7 +62,7 @@ export default class App extends Component {
   render() {
     return (
       <div className="container-fluid">
-        <h6 className="mt-5">github App</h6>
+        <h6 className="mt-5 ml-5">github App</h6>
         <div className="container mt-5">
           <Add add={this.add} />
           <Table repos={this.state.repos} toggleStatus={this.toggleStatus} remove={this.remove} />
