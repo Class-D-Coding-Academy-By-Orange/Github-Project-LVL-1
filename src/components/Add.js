@@ -4,8 +4,6 @@ export default class Add extends Component {
 
   render() {
     return (
-      <div style={{ border: '3px orange solid' }}>
-        <h6>Add</h6>
         <div>
           <form onSubmit={this.props.add} className="form-row">
           <div className="form-group col-md-3">
@@ -24,7 +22,6 @@ export default class Add extends Component {
             <button type="submit" className="form-group col-md-2 btn btn-primary">Add Repo</button>
           </form>
         </div>
-      </div>
     );
   }
 }
