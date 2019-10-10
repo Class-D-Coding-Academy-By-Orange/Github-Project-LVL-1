@@ -17,15 +17,46 @@ export default class App extends Component {
         status: "PUBLIC",
         language: "JavaScript"
       }
-    ]
+    ],
+    status: "",
+    isPrivate: ""
   };
+
+  addItem = item => {
+    let newState = this.state.repos;
+    newState.push(item);
+    this.setState({ repos: newState });
+  };
+
+  deleteItem = ID => {
+    console.log("this ", ID);
+    this.setState({
+      repos: this.state.repos.filter((elem, id) => {
+        return elem.id !== ID;
+      })
+    });
+  };
+  edit = ID => {
+    //console.log("this :", ID);
+    this.setState = {
+      repos: this.state.repos.map((elem, id) => {
+        if (elem.id === ID) {
+          console.log('this :',ID);
+          
+        }
+         return elem;
+      })
+    };
+  };
+
   render() {
-    const {repos}=this.state;
+    const { repos } = this.state;
+    const { edit, addItem, deleteItem } = this;
     return (
-      <div style={{ border: "black 1px solid" }}>
+      <div>
         <h3 style={{ textAlign: "center", color: "red" }}>GitHub Repo</h3>
-        <Add />
-        <Table repo={repos}  />
+        <Add addItem={addItem} id={repos.id}/>
+        <Table repo={repos} edit={edit} del={deleteItem} />
       </div>
     );
   }
