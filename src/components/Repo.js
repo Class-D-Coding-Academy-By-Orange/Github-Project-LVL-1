@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 export default class Repo extends Component {
   render() {
-    const { id, title, status, lang, edit, del } = this.props;
+    const { id, title, status, lang, edit, del,index } = this.props;
     return (
       <tr>
-        <td>{id}</td>
+        <td>{index+1}</td>
         <td>{title}</td>
         <td>{status.toUpperCase()}</td>
         <td>

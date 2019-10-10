@@ -3,6 +3,7 @@ import Add from "./components/Add";
 import Table from "./components/Table";
 import uuid from 'uuid';
 
+
 export default class App extends Component {
   state = {
     repos: [
@@ -28,15 +29,20 @@ export default class App extends Component {
     newState.push(item);
     this.setState({ repos: newState });
   };
-
+////////////////////////////////////////////////////////
   deleteItem = ID => {
     console.log("this ", ID);
-    this.setState({
-      repos: this.state.repos.filter((elem, id) => {
-        return elem.id !== ID;
-      })
-    });
+    let del=this.state.repos.filter((elem)=>
+    {return elem.id !==ID});
+      
+
+      this.setState({repos:del})
+    // this.setState({repos: this.state.repos.filter(elem => {
+    //     return elem.id !== ID;
+    //   })
+    // });
   };
+  ///////////////////////////////////////
 
   edit = ID => {
     //console.log("this :", ID);

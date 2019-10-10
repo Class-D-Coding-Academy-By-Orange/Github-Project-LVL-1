@@ -19,16 +19,17 @@ export default class Table extends Component {
             </tr>
           </thead>
 
-          {this.props.repo.map((elem, id) => {
+          {this.props.repo.map((elem, index) => {
             return (
               <Repo
                 key={elem.id}
-                id={id}
+                id={elem.id}
                 title={elem.title}
                 status={elem.status}
                 lang={elem.language}
                 edit={edit}
                 del={del}
+                index={index}
                 
               />
             );
