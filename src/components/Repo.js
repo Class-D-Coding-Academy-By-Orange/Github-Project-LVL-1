@@ -2,10 +2,14 @@ import React, { Component } from 'react';
 
 export default class Repo extends Component {
   render() {
+    const { repos } = this.props;
     return (
-      <div style={{ border: '3px red solid' }}>
-        <h6>Repo</h6>
-      </div>
+      <tr style={{ border: '3px red solid' }}>
+        <td>{repos.id}</td>
+        <td>{repos.title}</td>
+        <td>{repos.status}</td>
+        <td>{repos.language}</td>
+      </tr>
     );
   }
 }
