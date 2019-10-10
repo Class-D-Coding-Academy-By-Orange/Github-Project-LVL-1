@@ -1,29 +1,29 @@
-import React, { Component } from 'react';
-import { isTemplateElement } from '@babel/types';
+import React, { Component } from "react";
+// import { isPrivate } from "@babel/types";
+// import { isTemplateElement } from '@babel/types';
 
 export default class Repo extends Component {
+  state = {};
   render() {
-    const {repos}= this.props
-    return (
-      <div style={{ border: '3px red solid' }}>
-        <h6>Repo</h6>
-        <table>
-            <tr>
-            <th>Number </th>|
-            <th>Title</th>|
-            {/* <th>Repo status</th>|
-            <th>chek</th>|
-            <th>isPrivet</th>| */}
-            <th>Language</th>|
-            <th>Delete</th>|
-            </tr>
+    const { del ,check} = this.props;
+    const { id, title, status, language } = this.props.repos;
 
-            
-          <tr>
-         
-          </tr>
-        </table>
-      </div>
+    return (
+      <tr>
+        <td>{id} </td>|<td> {title}</td>|<td>{status.toUpperCase()}</td>|
+        <td>
+          <input type="checkbox" 
+                  checked = {status === "Private"} 
+                  onClick={check.bind(this,id)}
+
+                  />
+        </td>
+        |<td>{status === 'Private'?'YES':'NO'}</td>|<td> {language}</td>|
+        <td>
+          <button onClick={del.bind(this, id)}>Delete</button>
+        </td>
+        |
+      </tr>
     );
   }
 }
