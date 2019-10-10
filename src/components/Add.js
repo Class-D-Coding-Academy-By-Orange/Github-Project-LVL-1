@@ -1,24 +1,51 @@
 import React, { Component } from "react";
 
 export default class Add extends Component {
+  state = {
+    title: "",
+    status: "",
+    language: ""
+  };
+  change = event => {
+    this.setState({
+      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value
+    });
+    // console.log(this.state);
+  };
+  pushItem = () => {
+    this.props.addItem(this.state);
+    this.setState({
+      title: "",
+      status: "",
+      language: ""
+    });
+  };
+
   render() {
-    const { handelAdd } = this.props;
     return (
       <div>
         <input
           style={{ width: 200, padding: 10, margin: 10 }}
           type="text"
+          value={this.state.title}
           placeholder="Repo Title"
-          
+          name="title"
+          onChange={this.change}
         />
-        {console.log('this.props.repos :', this.event)}
         <input
           style={{ width: 200, padding: 10, margin: 10 }}
           type="text"
+          name="language"
+          value={this.state.language}
           placeholder="Repo Language"
+          onChange={this.change}
         />
         <select
           defaultValue={"DEFAULT"}
+          onChange={this.change}
+          name="status"
           style={{ width: 200, padding: 10, margin: 10 }}
         >
           <option disabled value="DEFAULT" hidden>
@@ -27,10 +54,7 @@ export default class Add extends Component {
           <option>Private</option>
           <option>Public</option>
         </select>
-        <button
-          onClick={() => handelAdd(this.props.repos.id)}
-          style={{ padding: 10, width: 100 }}
-        >
+        <button onClick={this.pushItem} style={{ padding: 10, width: 100 }}>
           Add
         </button>
       </div>

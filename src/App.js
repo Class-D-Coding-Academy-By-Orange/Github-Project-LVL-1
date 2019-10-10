@@ -42,27 +42,24 @@ export default class App extends Component {
     });
   };
 
-  handelAdd = () => {
-    let newItem = {
-      id: this.state.repos.length + 1,
-      title: this.state.inputValue,
-      status: "Public",
-      language: "HTML"
-    };
-    console.log(newItem);
-    this.setState({ repos: this.state.repos.concat(newItem) });
+  addItem = (repo) => {
+    repo.id=this.state.repos.length+1
+    let newRepos=this.state.repos
+    newRepos.push(repo)
+    this.setState({repos:newRepos})
   };
 
   render() {
     const { repos } = this.state;
-    const { handleChange, handelDelete, handelAdd } = this;
+    const { handleChange, handelDelete, addItem } = this;
     return (
       <div style={{ border: "black 1px solid" }}>
-        <Add handelAdd={handelAdd} repos={repos} />
+        <Add addItem={addItem} repos={repos} test={this.state} />
 
         <Table
           handleChange={handleChange}
           handelDelete={handelDelete}
+          addItem={addItem}
           repos={repos}
         />
       </div>
