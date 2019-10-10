@@ -31,7 +31,7 @@ export default class Add extends Component {
   render() {
     const { state, addNewTask, changeTitle, changeLang, changeRepo } = this;
     return (
-      <div
+      <form
         style={{ padding: "10px", marginBottom: "40px", marginTop: "40px" }}
         className="tab form-inline "
       >
@@ -42,6 +42,7 @@ export default class Add extends Component {
           className="form-control"
           placeholder="Repo title ..."
           onChange={changeTitle}
+          required
         />
         <input
           type="text"
@@ -50,6 +51,7 @@ export default class Add extends Component {
           className="form-control"
           placeholder="Repo language ..."
           onChange={changeLang}
+          required
         />
         <select
           onChange={changeRepo}
@@ -63,13 +65,14 @@ export default class Add extends Component {
           <option value={state.value}>Public</option>
         </select>
         <button
+          type="submit"
           style={{ float: "right" }}
           onClick={addNewTask}
           className="btn btn-warning"
         >
           <strong>Add</strong>
         </button>
-      </div>
+      </form>
     );
   }
 }

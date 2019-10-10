@@ -23,12 +23,13 @@ export default class Table extends Component {
             return (
               <Repo
                 key={elem.id}
-                id={elem.id}
+                id={id}
                 title={elem.title}
                 status={elem.status}
                 lang={elem.language}
                 edit={edit}
                 del={del}
+                
               />
             );
           })}

@@ -1,18 +1,19 @@
 import React, { Component } from "react";
 import Add from "./components/Add";
 import Table from "./components/Table";
+import uuid from 'uuid';
 
 export default class App extends Component {
   state = {
     repos: [
       {
-        id: 1,
+        id: uuid.v4(),
         title: "Array",
         status: "PRIVATE",
         language: "HTML"
       },
       {
-        id: 2,
+        id: uuid.v4(),
         title: "Object",
         status: "PUBLIC",
         language: "JavaScript"
@@ -36,17 +37,21 @@ export default class App extends Component {
       })
     });
   };
+
   edit = ID => {
     //console.log("this :", ID);
-    this.setState = {
-      repos: this.state.repos.map((elem, id) => {
-        if (elem.id === ID) {
-          console.log('this :',ID);
-          
+    this.setState({
+      repos: this.state.repos.map(elem => {
+        if (ID === elem.id) {
+          if (elem.status === "PRIVATE") {
+            elem.status = "PUBLIC";
+          } else {
+            elem.status = "PRIVATE";
+          }
         }
-         return elem;
+        return elem;
       })
-    };
+    });
   };
 
   render() {
@@ -55,7 +60,7 @@ export default class App extends Component {
     return (
       <div>
         <h3 style={{ textAlign: "center", color: "red" }}>GitHub Repo</h3>
-        <Add addItem={addItem} id={repos.id}/>
+        <Add addItem={addItem} id={repos.id} />
         <Table repo={repos} edit={edit} del={deleteItem} />
       </div>
     );
