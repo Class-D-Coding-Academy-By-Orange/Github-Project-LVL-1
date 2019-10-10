@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Repo from './components/Repo';
+import Table from './components/Table';
+import Add from './components/Add';
 
 export default class App extends Component {
   state = {
@@ -18,11 +19,19 @@ export default class App extends Component {
       }
     ]
   };
+
+  delRepo = (id) => {
+    console.log(id);
+    this.setState({repos : [...this.state.repos.filter(repo => repo.id !== id)] });
+  }
+
   render() {
-    console.log(this.state.repos);
+    const {repos}=this.state;
+    // console.log(repos);
     return (
       <div style={{ border: 'black 1px solid' }}>
-        <Repo repos={this.state.repos}/>
+        <Add />
+        <Table repos={repos} delRepo={this.delRepo}/>
       </div>
     );
   }

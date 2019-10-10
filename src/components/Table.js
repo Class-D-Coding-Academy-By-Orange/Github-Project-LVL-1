@@ -1,38 +1,33 @@
 import React, { Component } from 'react';
+import Repo from './Repo';
 
 export default class Table extends Component {
   render() {
+    const {repos ,delRepo}=this.props;
     return (
       <div style={{ border: '3px green dotted' }}>
-        <h6>Table</h6>
         <table className="table">
           <thead className="thead-light">
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
-          <th scope="col">Handle</th>
+          <th scope="col">Number</th>
+          <th scope="col">Title</th>
+          <th scope="col">Repo status</th>
+          {/* <th scope="col">Check</th> */}
+          {/* <th scope="col">isPrivate</th> */}
+          <th scope="col">Language</th>
+          <th scope="col">Delete</th>
         </tr>
           </thead>
           <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
-        </tr>
+            
+          {console.log(repos)}
+          {
+            repos.map((elem, i)=>(
+              <Repo key={i} repo={elem} delRepo={delRepo}/>
+            )
+            )
+          }
+          
           </tbody>
         </table>
       </div>

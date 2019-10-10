@@ -1,19 +1,27 @@
 import React, { Component } from 'react';
-import Table from './Table';
-import Add from './Add';
 
 export default class Repo extends Component {
   render() {
-    const {repos}=this.props;
+    const {repo , delRepo}=this.props;
+    console.log(this.props.repos);
     return (
-      <div style={{ border: '3px red solid' }}>
-         {/* {
-           repos.map((repos,index)=>{ */}
-          <Add /> 
-          <Table  repo={repos}/>
-           {/* })
-      
-          } */}
-    </div>);
+      <>
+        <tr>
+        <td>{repo.id}</td>
+        <td>{repo.title}</td>
+        <td>{repo.status}</td>
+        <td>{repo.language}</td>
+        <td><button onClick={delRepo.bind(this,repo.id)} style={btnStyle}>X</button></td>
+        </tr>
+    </>);
   }
+}
+const btnStyle = {
+  background: '#ff0000',
+  color: '#fff',
+  border:'none',
+  padding: '5px 9px',
+  borderRedius: '50%',
+  cursor:'pointer',
+  float:'right'
 }
