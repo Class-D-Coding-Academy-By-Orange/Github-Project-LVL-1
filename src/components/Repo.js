@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 
 export default class Repo extends Component {
   render() {
-    const {repo , delRepo}=this.props;
+    const {repo , delRepo ,exchange}=this.props;
+    const {id} = this.props.repo;
     console.log(this.props.repos);
     return (
       <>
@@ -10,6 +11,8 @@ export default class Repo extends Component {
         <td>{repo.id}</td>
         <td>{repo.title}</td>
         <td>{repo.status}</td>
+        <td><input type="checkbox" onChange={exchange.bind(this,id)} /> </td>
+        <td>{repo.isPrivate}</td> 
         <td>{repo.language}</td>
         <td><button onClick={delRepo.bind(this,repo.id)} style={btnStyle}>X</button></td>
         </tr>
@@ -23,5 +26,5 @@ const btnStyle = {
   padding: '5px 9px',
   borderRedius: '50%',
   cursor:'pointer',
-  float:'right'
+  float:'center'
 }
