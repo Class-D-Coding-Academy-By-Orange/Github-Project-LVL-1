@@ -44,7 +44,7 @@ export default class App extends Component {
     return (
       <div style={{ border: 'black 1px solid' }}>
          <Add addRepo={this.addRepo} repos={repos}/>
-         <Table repos={repos}/> 
+         <Table repos={repos} deleteItem={this.deleteItem}/> 
       </div>
     );
   } 

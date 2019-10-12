@@ -20,8 +20,8 @@ export default class Table extends Component {
 </table>
 { repos.map((elemt,id)=>{
       return ( 
-
-        <Repo key={id} repo={elemt}/>
+        
+        <Repo key={id} repo={elemt} deleteItem ={this.props.deleteItem}/>
  
       )}
         )}
