@@ -2,16 +2,44 @@ import React, { Component } from "react";
 
 export default class Repo extends Component {
   render() {
+    const { id, title, status, language } = this.props.repo;
+    let isPrivate;
+    let check;
+    if (this.props.repo.status === "Private") {
+      isPrivate = "Yes";
+    } else {
+      isPrivate = "No";
+    }
+    if (this.props.repo.status === "Private") {
+      check = true;
+    } else {
+      check = false;
+    }
     return (
-      <div style={{ border: "3px red solid" }}>
-        <h6>Repo</h6>
-        {/* <tr>
-          <th scope="row">{this.props.repos.id}</th>
-          <td>{this.props.repos.title}</td>
-          <td>{this.props.repos.status}</td>
-          <td>{this.props.repos.language}</td>
-        </tr> */}
-      </div>
+      <>
+        <tr>
+          <th scope="row">{id}</th>
+          <td>{title}</td>
+          <td>{status}</td>
+          <td>
+            <input
+              type="checkbox"
+              checked={check}
+              onChange={this.props.changeStatus.bind(this, status, id)}
+            />
+          </td>
+          <td>{isPrivate}</td>
+          <td>{language}</td>
+          <td>
+            <button
+              onClick={this.props.delete.bind(this, id)}
+              className="btn btn-danger"
+            >
+              X
+            </button>
+          </td>
+        </tr>
+      </>
     );
   }
 }

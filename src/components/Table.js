@@ -3,6 +3,7 @@ import Repo from "./Repo.js";
 
 export default class Table extends Component {
   render() {
+    const { repos } = this.props;
     return (
       <div style={{ border: "3px green dotted" }}>
         <table className="table">
@@ -11,31 +12,27 @@ export default class Table extends Component {
               <th scope="col">ID</th>
               <th scope="col">Title</th>
               <th scope="col">Repo Status</th>
+              <th scope="col">Check</th>
+              <th scope="col">Is Private?</th>
               <th scope="col">Language</th>
+              <th scope="col">Delete</th>
             </tr>
           </thead>
           <tbody>
-            {this.props.repos.map((elem, id) => {
+            {repos.map((elem, id) => {
               return (
                 <Repo
-                  id={this.props.repos.id}
-                  title={this.props.repos.title}
-                  repoStatus={this.props.repos.status}
-                  language={this.props.repos.language}
+                  repo={elem}
                   key={id}
+                  delete={this.props.delete}
+                  changeStatus={this.props.changeStatus}
                 />
               );
+              // construktouer
             })}
           </tbody>
         </table>
       </div>
     );
   }
-}
-
-{
-  /* <th scope="row">{this.props.repos.id}</th>
-            <td>{this.props.repos.title}</td>
-            <td>{this.props.repos.status}</td>
-            <td>{this.props.repos.language}</td> */
 }
