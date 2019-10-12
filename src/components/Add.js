@@ -7,18 +7,19 @@ import React, { Component } from 'react';
 
 export default class Add extends Component {
   state={
+    id:"",
     title:"",
+    status:"",
     language:"",
   };
-  // selectStatus= =>{
-
-  // }
+ 
   addNewRepo=()=>{
 
-    let newRepo ={title:this.state.title, status:"Public", language: this.state.language}
+    let newRepo ={id:this.state.id,title:this.state.title, status:this.state.status, language: this.state.language}
     this.props.addRepo(newRepo);
     this.setState({title:"",language:""})
  };
+ 
  changeTitle=(event)=>{
   //console.log('event.target',event.target.value);
   this.setState({title:event.target.value})
@@ -27,12 +28,13 @@ export default class Add extends Component {
   this.setState({language:event.target.value})
 
  }
- changeStatus=()=>{
-   this.setState({})
+ changeStatus=(event)=>{
+   this.setState({status:event.target.value})
  }
+ 
   render() {
-    const {addNewRepo,changeTitle,changeLanguage}=this
-    const {title,language}=this.state
+    const {addNewRepo,changeTitle,changeLanguage,changeStatus,changeID}=this
+    const {title,language,id}=this.state
     return (
       
       <div style={{ border: '3px orange solid', textAlign: "center", marginBottom:"10px", }}>
@@ -41,9 +43,10 @@ export default class Add extends Component {
         <input placeholder="Title" onChange={changeTitle} value={title}></input>
         <input placeholder="language" onChange={changeLanguage} value={language}></input>
         {/* value={} onChange={changeStatus} */}
-            <select >
+            
+            <select onChange={changeStatus}>
             <option >Status</option>
-            <option value="selectStaus" >Public</option>
+            <option value="Public">Public</option>
             <option value="Private">Private</option>
            </select>
 

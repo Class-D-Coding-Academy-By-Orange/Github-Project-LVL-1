@@ -17,7 +17,7 @@ export default class Table extends Component {
   
   render() {
 
-     const {seeReps}=this.props;
+     const {seeReps,toStatus}=this.props;
 
     return (
       <div style={{ border: '3px green dotted' }}>
@@ -30,15 +30,16 @@ export default class Table extends Component {
               <th>id</th>
               <th >Title</th>
               <th>status</th>
-              <th>language</th>
+              
               <th>Check</th>
               <th>Private</th>
+              <th>language</th>
             </tr>
 
        
             {
             seeReps.map((repo,id)=>{
-              return <Repo key={id} seeRepo={repo}  sosos={this.props.deldel} />;
+              return <Repo key={id} seeRepo={repo} sosos={this.props.deldel} isStatus={toStatus}/>;
             })
           }
           </table>
@@ -46,6 +47,7 @@ export default class Table extends Component {
         </div>
       </div>
     );
+  
     
   }
   // const tableStly ={
