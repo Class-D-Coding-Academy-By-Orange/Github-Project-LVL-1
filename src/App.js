@@ -1,26 +1,73 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import Add from "./components/Add";
+import Table from "./components/Table";
+import uuid from 'uuid';
+
 
 export default class App extends Component {
   state = {
     repos: [
       {
-        id: 1,
-        title: 'Array',
-        status: 'Private',
-        language: 'HTML'
+        id: uuid.v4(),
+        title: "Array",
+        status: "PRIVATE",
+        language: "HTML"
       },
       {
-        id: 2,
-        title: 'Object',
-        status: 'Public',
-        language: 'JavaScript'
+        id: uuid.v4(),
+        title: "Object",
+        status: "PUBLIC",
+        language: "JavaScript"
       }
-    ]
+    ],
+    status: "",
+    isPrivate: ""
   };
+
+  addItem = item => {
+    let newState = this.state.repos;
+    newState.push(item);
+    this.setState({ repos: newState });
+  };
+////////////////////////////////////////////////////////
+  deleteItem = ID => {
+    console.log("this ", ID);
+    let del=this.state.repos.filter((elem)=>
+    {return elem.id !==ID});
+      
+
+      this.setState({repos:del})
+    // this.setState({repos: this.state.repos.filter(elem => {
+    //     return elem.id !== ID;
+    //   })
+    // });
+  };
+  ///////////////////////////////////////
+
+  edit = ID => {
+    //console.log("this :", ID);
+    this.setState({
+      repos: this.state.repos.map(elem => {
+        if (ID === elem.id) {
+          if (elem.status === "PRIVATE") {
+            elem.status = "PUBLIC";
+          } else {
+            elem.status = "PRIVATE";
+          }
+        }
+        return elem;
+      })
+    });
+  };
+
   render() {
+    const { repos } = this.state;
+    const { edit, addItem, deleteItem } = this;
     return (
-      <div style={{ border: 'black 1px solid' }}>
-        <h6>App</h6>
+      <div>
+        <h3 style={{ textAlign: "center", color: "red" }}>GitHub Repo</h3>
+        <Add addItem={addItem} id={repos.id} />
+        <Table repo={repos} edit={edit} del={deleteItem} />
       </div>
     );
   }
