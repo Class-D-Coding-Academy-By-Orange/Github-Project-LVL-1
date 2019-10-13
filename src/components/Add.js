@@ -7,6 +7,8 @@ export default class Add extends Component {
     id: '',
     title: '',
     status: '',
+    // check:'',
+    isPrivate:'',
     language: ''
   }
 
@@ -27,7 +29,7 @@ export default class Add extends Component {
   }
 
   changeLanguage = (event) => {
-    console.log(event.target.value);
+    // console.log(event.target.value);
     this.setState({ language: event.target.value });
   }
 
@@ -40,16 +42,17 @@ export default class Add extends Component {
   }
 
   render() {
-    const { changeTitle, changeLanguage, addNewRepo } = this;
+    const { state, changeTitle, changeLanguage, addNewRepo,changeStatus } = this;
+    const {title,language,status}=state;
     return (
       <div style={{ border: '3px orange solid' }}>
         <h6>Add</h6>
 
         <form className="form-inline" onSubmit={this.handleSubmit}>
-          <input type="text" className="form-control mb-2 mr-sm-2" placeholder="Repo Title" value={this.state.title} onChange={changeTitle} />
-          <input type="text" className="form-control mb-2 mr-sm-2" placeholder="Repo Language" value={this.state.language} onChange={changeLanguage} />
+          <input type="text" className="form-control mb-2 mr-sm-2" placeholder="Repo Title" value={title} onChange={changeTitle} />
+          <input type="text" className="form-control mb-2 mr-sm-2" placeholder="Repo Language" value={language} onChange={changeLanguage} />
 
-          <select className="custom-select mb-2 mr-sm-2" value={this.state.status} onChange={this.changeStatus} >
+          <select className="custom-select mb-2 mr-sm-2" value={status} onChange={changeStatus} >
             <option defultvalue='selected disabled hidden'>Repo Status(Private/Public)</option>
             <option value="PUBLIC">Public</option>
             <option value="PRIVATE">Private</option>

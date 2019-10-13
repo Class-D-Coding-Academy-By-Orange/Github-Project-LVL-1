@@ -4,7 +4,7 @@ import Repo from './Repo';
 
 export default class Table extends Component {
   render() {
-    const { repos } = this.props;
+    const { repos, deleteRepo,changeCheck} = this.props;
     return (
       <div style={{ border: '3px green dotted' }}>
         <h6>Table</h6>
@@ -15,16 +15,16 @@ export default class Table extends Component {
               <th scope="col">Number</th>
               <th scope="col">Title</th>
               <th scope="col">Repo Status</th>
-              {/* <th scope="col">Check</th> */}
-              {/* <th scope="col">isPrivate</th> */}
+              <th scope="col">Check</th>
+              <th scope="col">isPrivate</th>
               <th scope="col">Language</th>
-              {/* <th scope="col">Delete</th> */}
+              <th scope="col">Delete</th>
             </tr>
           </thead>
           <tbody>
             {
               repos.map((element,id)=>{
-                return <Repo key={id} repos={element} />
+                return <Repo key={id} repos={element} deleteRepo={deleteRepo} changeCheck={changeCheck}/>
               })
             }
           </tbody>
