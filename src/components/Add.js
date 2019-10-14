@@ -57,6 +57,12 @@ export default class Add extends Component {
         <button onClick={this.pushItem} style={{ padding: 10, width: 100 }}>
           Add
         </button>
+        <button
+          onClick={this.props.getRequest}
+          style={{ marginLeft:15,padding: 10, width: 100 }}
+        >
+          Get request
+        </button>
       </div>
     );
   }
