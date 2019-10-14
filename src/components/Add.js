@@ -1,57 +1,56 @@
 import React, { Component } from "react";
-import uuid from 'uuid';
+import uuid from "uuid";
 
 export default class Add extends Component {
   state = {
-      id:1231,
-      title:'',
-      status:'',
-      language:''
-    
+    id: uuid(),
+    title: "",
+    status: "",
+    language: ""
   };
-  changetitel = (event) => {
+  changetitel = event => {
     console.log(event.target.value);
     // console.log(this.state.title)
     this.setState({
-      title:event.target.value
-    })
-   
-  };
- 
-  changelanguage = (event) => {
-    console.log(event.target.value);
-    // console.log(this.state.title)
-    this.setState({
-      language:event.target.value
-    })
+      title: event.target.value
+    });
   };
 
-  changestatus = (event) => {
+  changelanguage = event => {
     console.log(event.target.value);
     // console.log(this.state.title)
     this.setState({
-      status:event.target.value
-    })
+      language: event.target.value
+    });
   };
 
-  addnew = (event)=>{
-    let newd={
-      id:uuid(),
-      title:this.state.title,
-      status:this.state.status,
-      language:this.state.language,
+  changestatus = event => {
+    console.log(event.target.value);
+    // console.log(this.state.title)
+    this.setState({
+      status: event.target.value
+    });
+  };
+
+  addnew = event => {
+    let newd = {
+      id: uuid(),
+      title: this.state.title,
+      status: this.state.status,
+      language: this.state.language
     };
 
     this.props.adddata(newd);
 
-       this.setState({
-      title:'',
-      status:'',
-      language:'',
-    })
+    //----------------------------------- SEND THIS TO BACKEDN
+    // this.props.adddata(this.props.state);
 
-
-  }
+    this.setState({
+      title: "",
+      status: "",
+      language: ""
+    });
+  };
 
   // changetitel=(event)=> {
   //   console.log("event :",event.target.value);
@@ -76,13 +75,13 @@ export default class Add extends Component {
   // }
 
   render() {
-    const {title,language}=this.state
-    const {addnew}=this
-    const { changetitel ,changelanguage , changestatus} = this;
+    const { title, language } = this.state;
+    const { addnew } = this;
+    const { changetitel, changelanguage, changestatus } = this;
     // const { repos } = this.props;
     return (
-      <div >
-        <div>
+      <div>
+        <div className="form-inline">
           <input
             type="text"
             className="form-control"
@@ -99,23 +98,29 @@ export default class Add extends Component {
             onChange={changelanguage}
             placeholder="repo language"
           />
-          
-          <select 
-                  name="status" 
-                  onChange={changestatus} >
 
+          <select
+            className=" form-control sm-control"
+            name="status"
+            onChange={changestatus}
+          >
             <option value="" disabled selected hidden>
-              Repo Staute (Privet/Public)
+              Repo (Privet/Public)
             </option>
-            <option 
-                   className="dropdown-item"
-                   value="Private">Private</option>
+            <option className="dropdown-item" value="Private">
+              Private
+            </option>
             <option value="Public">Public</option>
           </select>
 
-          <button onClick={addnew.bind(this)}>ADD</button>
+          <button
+            className="btn btn-outline-success"
+            onClick={addnew.bind(this)}
+          >
+            ADD
+          </button>
         </div>
       </div>
     );
   }
-  }
+}
