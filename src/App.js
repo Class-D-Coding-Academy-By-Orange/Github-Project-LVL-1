@@ -1,44 +1,29 @@
 import React, { Component } from 'react';
 import Add from './components/Add';
 import Table from './components/Table';
-import uuid from 'uuid';
+import axios from 'axios'
 
 export default class App extends Component {
 
   state = {
-    repos: [
-      {
-        id: uuid.v4(),
-        title: 'Array',
-        status: 'Private',
-        language: 'HTML'
-      },
-      {
-        id: uuid.v4(),
-        title: 'Object',
-        status: 'Public',
-        language: 'JavaScript'
-      }
-    ],
-
+    repos: []
   };
 
   componentDidMount() {
+    this.getData()
     console.log('Done By\nAhmad Al-Ghzawi')
   }
 
+  getData() {
+    axios.get(`http://localhost:9500/get_data`)
+      .then(response => this.setState({repos: response.data}))
+      .catch (error => console.log(error))
+  }
+
   toggleStatus = id => {
-    let repos = this.state.repos.map(repo => {
-      if (repo.id === id) {
-        if (repo.status === 'Private') {
-          repo.status = 'Public'
-        } else {
-          repo.status = 'Private'
-        }
-      }
-      return repo
-    })
-    this.setState({ repos })
+    axios.put(`http://localhost:9500/toggle/${id}`)
+      .then(response => this.setState({repos: response.data}))
+      .catch(error => console.log(error))
   }
 
   add = event => {
@@ -47,16 +32,21 @@ export default class App extends Component {
     let status = event.target['repo-status'].value
     let language = event.target['repo-language'].value
 
+    event.target['repo-title'].value = ''
+    event.target['repo-status'].value = 'Repo Status (Private/Public)'
+    event.target['repo-language'].value = ''
+
     if (!(title === '' || language === '' || status === 'Repo Status (Private/Public)')) {
-      let repos = this.state.repos
-      let repo = {id: uuid.v4(), title, status, language}
-      this.setState({ repos: repos.concat(repo) })
+      axios.post('http://localhost:9500/add',{title, status, language})
+        .then(response => this.setState({repos: response.data}))
+        .catch(error => console.log(error))
     }
   }
 
   remove = id => {
-    let repos = this.state.repos.filter(repo => repo.id !== id)
-    this.setState({ repos })
+    axios.delete(`http://localhost:9500/delete/${id}`)
+      .then(response => this.setState({repos: response.data}))
+      .catch(error => console.log(error))
   }
 
   render() {
