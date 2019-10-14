@@ -2,10 +2,19 @@ import React, { Component } from 'react';
 
 export default class Repo extends Component {
   render() {
+    const {repo, id, toggleStatus, remove} = this.props
     return (
-      <div style={{ border: '3px red solid' }}>
-        <h6>Repo</h6>
-      </div>
+
+      <tr>
+        <th scope="row">{id}</th>
+        <td>{repo.title}</td>
+        <td>{repo.status}</td>
+        <td><input type="checkbox" defaultChecked={repo.status === 'Private' ? true : false} onClick={() => toggleStatus(repo.id)}/></td>
+        <td>{repo.status === "Private" ? 'YES' : 'NO'}</td>
+        <td>{repo.language}</td>
+        <td><button className="btn btn-danger" onClick={() => remove(repo.id)}>X</button></td>
+      </tr>
+
     );
   }
 }
