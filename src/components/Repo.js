@@ -9,13 +9,15 @@ export default class Repo extends Component {
     const { id, title, status, language } = this.props.repos;
 
     return (
+      
       <tr>
-        <td>{id} </td>|<td> {title}</td>|<td>{status}</td>|
+        <td>{id} </td>|<td> {title}</td>|<td>{status.toUpperCase()}</td>|
         <td>
           <input
             type="checkbox"
             checked={status === "Private"}
             onClick={check.bind(this, id)}
+            
           />
         </td>
         |<td>{status === "Private" ? "YES" : "NO"}</td>|<td> {language}</td>|
@@ -29,6 +31,7 @@ export default class Repo extends Component {
         </td>
         |
       </tr>
+    
     );
   }
 }

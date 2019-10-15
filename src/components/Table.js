@@ -9,22 +9,26 @@ export default class Table extends Component {
       <div className="container">
         <div>
           <table>
-            <tr>
-              <th>Number</th>|<th>Title</th>|<th>Repo stat</th>|<th>check</th>|
-              <th>isPrivate</th>|<th>Language </th>|<th> Delete</th>|
-            </tr>
+            <thead>
+              <tr>
+                <th>Number</th>|<th>Title</th>|<th>Repo stat</th>|<th>check</th>
+                |<th>isPrivate</th>|<th>Language </th>|<th> Delete</th>|
+              </tr>
+            </thead>
 
-            {repos.map((item, key) => {
-              return (
-                <Repo
-                  check={check}
-                  repos={item}
-                  key={key}
-                  del={del}
-                  adddata={adddata}
-                />
-              );
-            })}
+            <tbody>
+              {repos.map((item, key) => {
+                return (
+                  <Repo
+                    check={check}
+                    repos={item}
+                    key={key}
+                    del={del}
+                    adddata={adddata}
+                  />
+                );
+              })}
+            </tbody>
           </table>
         </div>
       </div>

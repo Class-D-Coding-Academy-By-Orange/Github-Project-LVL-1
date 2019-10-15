@@ -33,6 +33,7 @@ export default class Add extends Component {
   };
 
   addnew = event => {
+    
     let newd = {
       id: uuid(),
       title: this.state.title,
@@ -104,7 +105,7 @@ export default class Add extends Component {
             name="status"
             onChange={changestatus}
           >
-            <option value="" disabled selected hidden>
+            <option value="DEFAULT" disabled hidden>
               Repo (Privet/Public)
             </option>
             <option className="dropdown-item" value="Private">

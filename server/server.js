@@ -32,10 +32,13 @@ app.get("/data", (req, res) => {
 
 app.post("/add", (req, res) => {
   console.log("REQ.BODY", req.body);
+  console.log(req.body.repos.title != null);
   // start fun
+  if(  req.body.repos.title != '' && req.body.repos.status != '' && req.body.repos.language != '')
+{
   let newdata = {
     id: uuid(),
-    title: req.body.repos.title,
+    title:req.body.repos.title,
     status: req.body.repos.status,
     language: req.body.repos.language
   };
@@ -46,7 +49,24 @@ app.post("/add", (req, res) => {
   //end function
 
   res.json(array);
+}
+// else{
+  // let newdata = {
+  //   id: uuid(),
+  //   title:req.body.repos.title,
+  //   status: req.body.repos.status,
+  //   language: req.body.repos.language
+  // };
+
+  // console.log("newd :", newdata);
+  // array.push(newdata);
+
+  // //end function
+
+  // res.json(array);
+// }
 });
+ 
 
 //--------------------------------------------------DELETE------------------------------------
 
