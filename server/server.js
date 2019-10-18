@@ -1,11 +1,10 @@
 const express = require("express");
 const cors = require("cors");
 const uuid = require("uuid");
-
+const DB = require("./db");
 const app = express();
 
 app.use(express.json());
-
 app.use(cors());
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -16,70 +15,42 @@ app.use(function(req, res, next) {
   next();
 });
 
-// console.log("Alaa Aldein")
 app.get("/", (req, res) => {
-  let x = 2 * 2;
-  res.json(`x: ${x}`);
+  res.json(`SERVER ON`);
 });
 
 //---------------------------------------------------show--------------------------------------
 app.get("/data", (req, res) => {
-  // console.log('array.data', array.data);
-  res.json(array);
+  DB.getRepos(data => {
+    res.json(data);
+  });
 });
 
 //--------------------------------------------Add--------------------------------------------------
 
 app.post("/add", (req, res) => {
   console.log("REQ.BODY", req.body);
-  console.log(req.body.repos.title != null);
-  // start fun
-  if(  req.body.repos.title != '' && req.body.repos.status != '' && req.body.repos.language != '')
-{
-  let newdata = {
-    id: uuid(),
-    title:req.body.repos.title,
-    status: req.body.repos.status,
-    language: req.body.repos.language
-  };
-
-  console.log("newd :", newdata);
-  array.push(newdata);
-
-  //end function
-
-  res.json(array);
-}
-// else{
-  // let newdata = {
-  //   id: uuid(),
-  //   title:req.body.repos.title,
-  //   status: req.body.repos.status,
-  //   language: req.body.repos.language
-  // };
-
-  // console.log("newd :", newdata);
-  // array.push(newdata);
-
-  // //end function
-
-  // res.json(array);
-// }
+  let box = req.body;
+  DB.addData(todo => {
+    res.json(todo);
+  }, box);
 });
- 
 
 //--------------------------------------------------DELETE------------------------------------
 
-app.get("/delete/:ID", (req, res) => {
-  console.log("array.params", req.params.ID);
-  // let ID = req.params.id;
-  array = array.filter(item => {
-    return item.id != req.params.ID;
-    //STRING OR INT
-    // return item.id !== parseInt(req.params.ID);
-  });
+app.delete("/delete/:id", (req, res) => {
+  console.log("array.params", req.params);
+  console.log("array.params", req.params.id);
 
-  res.json(array);
+  DB.remove(result => {
+    res.json(result);
+  }, req.params.id);
+});
+//------------------------------------------Edit------------------
+app.put("/edit/:id", (req, res) => {
+  DB.edit(data => {
+    res.json(data);
+  }, req.params.id);
 });
 
 const PORT = 9000;

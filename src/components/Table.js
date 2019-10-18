@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Repo from "./Repo";
-// import { isTemplateElement } from '@babel/types';
 
 export default class Table extends Component {
   render() {

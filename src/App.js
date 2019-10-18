@@ -6,60 +6,18 @@ import axios from "axios";
 
 export default class App extends Component {
   state = {
-    repos: [
-      // {
-      //   id: uuid(),
-      //   title: "Array",
-      //   status: "Private",
-      //   language: "HTML"
-      // },
-      // {
-      //   id: uuid(),
-      //   title: "Object",
-      //   status: "Public",
-      //   language: "JavaScript"
-      // }
-    ]
+    repos: []
   };
-
   check = id => {
-    let pri = this.state.repos;
-    pri.map(ele => {
-      if (ele.id === id) {
-        if (ele.status === "Public") {
-          ele.status = "Private";
-        } else {
-          ele.status = "Public";
-        }
-        return ele;
-      }
-
-      this.setState({ repos: pri });
+    axios.put(`http://localhost:9000/edit/${id}`).then(array => {
+      this.setState({ repos: array.data });
     });
   };
-  // if(this.state.status == "Privat"){
-  //   this.setState({
-  //    status:"PRIVAT"
-  //   })
-
-  // }
 
   adddata = item => {
-    // let newdata = this.state.repos;
-    // newdata.push(item);
-    // return repos;
-
-    axios
-      .post(`http://localhost:9000/add`, { repos: item })
-      // console.log('item :', item);
-      .then(array => {
-        //   // console.log('this :', this);
-        this.setState({ repos: array.data });
-        //   // console.log('repos :', repos);
-        // });
-
-        // this.setState({ repos: newdata });
-      });
+    axios.post(`http://localhost:9000/add`, { item }).then(array => {
+      this.setState({ repos: array.data });
+    });
   };
 
   getData = () => {
@@ -69,17 +27,9 @@ export default class App extends Component {
     });
   };
 
-  // del = id => {
-  //   // console.log('id :', id);
-  //   let newrepo = this.state.repos.filter(item => {
-  //     return id !== item.id;
-  //   });
-
-  //   this.setState({ repos: newrepo });
-  // };
-
   del = id => {
-    axios.get(`http://localhost:9000/delete/${id}`).then(array => {
+    console.log("IDAPP :", id);
+    axios.delete(`http://localhost:9000/delete/${id}`).then(array => {
       let data = array.data;
       this.setState({ repos: data });
     });
