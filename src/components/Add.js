@@ -25,7 +25,7 @@ export default class Add extends Component {
   //   console.log(this);
   // };
   reset = e => {
-    e.preventDefault();
+    // e.preventDefault();
   };
   render() {
     const { title, language, status } = this.state;
