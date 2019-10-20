@@ -15,8 +15,9 @@ export default class Add extends Component {
  
   addNewRepo=()=>{
 
-    let newRepo ={id:this.state.id,title:this.state.title, status:this.state.status, language: this.state.language}
-    this.props.addRepo(newRepo);
+    // let newRepo ={id:this.state.id,title:this.state.title, status:this.state.status, language: this.state.language}
+    // this.props.addRepo(newRepo);
+    this.props.addRepo(this.state.title,this.state.language);
     this.setState({title:"",language:""})
  };
  
@@ -33,15 +34,22 @@ export default class Add extends Component {
  }
  
   render() {
-    const {addNewRepo,changeTitle,changeLanguage,changeStatus,changeID}=this
-    const {title,language,id}=this.state
+    // changeID
+    const {addNewRepo,changeTitle,changeLanguage,changeStatus}=this
+    const {title,language}=this.state
     return (
       
       <div style={{ border: '3px orange solid', textAlign: "center", marginBottom:"10px", }}>
         <h1>Add</h1>
-        <from onSubmit={this.addRepo}>
-        <input placeholder="Title" onChange={changeTitle} value={title}></input>
-        <input placeholder="language" onChange={changeLanguage} value={language}></input>
+        <form onSubmit={this.addRepo}>
+
+        <input placeholder="Title" 
+        onChange={changeTitle} 
+        value={title}></input>
+
+        <input placeholder="language" 
+        onChange={changeLanguage} 
+        value={language}></input>
         {/* value={} onChange={changeStatus} */}
             
             <select onChange={changeStatus}>
@@ -51,10 +59,9 @@ export default class Add extends Component {
            </select>
 
        <button  type="submit" onClick={addNewRepo}>Add repo</button>
-       </from>
+       </form>
        </div>
      
     );
   }
 }
-
